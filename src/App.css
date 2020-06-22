@@ -1,0 +1,10 @@
+body { margin: 0; font-family: "Helvetica Neue", Arial, sans-serif; }
+.app { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; transition: background .4s; }
+.app.focus { background: #d95550; }
+.app.short { background: #4c9195; }
+.app.long { background: #457ca3; }
+.modes button { background: none; border: 0; color: white; padding: .5rem 1rem; border-radius: 4px; cursor: pointer; }
+.modes button.active { background: rgba(0, 0, 0, .15); font-weight: bold; }
+.clock { font-size: 6rem; margin: 2rem 0; font-variant-numeric: tabular-nums; }
+.start { font-size: 1.4rem; padding: .6rem 3rem; border: 0; border-radius: 6px; background: white; color: #333; cursor: pointer; }
+.count { opacity: .8; }

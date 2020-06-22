@@ -7,11 +7,21 @@ const MODES = {
   long: { label: "Long break", minutes: 15 },
 };
 
+function beep() {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = ctx.createOscillator();
+  osc.connect(ctx.destination);
+  osc.frequency.value = 880;
+  osc.start();
+  osc.stop(ctx.currentTime + 0.4);
+}
+
 export default function App() {
   const [mode, setMode] = useState("focus");
   const [completed, setCompleted] = useState(0);
 
   const timer = useTimer(MODES.focus.minutes * 60, () => {
+    beep();
     if (mode === "focus") setCompleted((c) => c + 1);
   });
 
@@ -37,6 +47,7 @@ export default function App() {
       <button className="start" onClick={() => timer.setRunning(!timer.running)}>
         {timer.running ? "Pause" : "Start"}
       </button>
+      <p className="count">Pomodoros today: {completed}</p>
     </div>
   );
 }

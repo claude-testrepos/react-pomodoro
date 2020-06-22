@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useTimer from "./useTimer";
 
 const MODES = {
@@ -18,7 +18,8 @@ function beep() {
 
 export default function App() {
   const [mode, setMode] = useState("focus");
-  const [completed, setCompleted] = useState(0);
+  const [completed, setCompleted] = useState(() => Number(localStorage.getItem("completed") || 0));
+  useEffect(() => localStorage.setItem("completed", completed), [completed]);
 
   const timer = useTimer(MODES.focus.minutes * 60, () => {
     beep();

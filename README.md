@@ -1,6 +1,6 @@
 # Pomodoro Timer
 
-Simple pomodoro timer I made to stay focused during online clasess.
+Simple pomodoro timer I made to stay focused during online classes.
 
 ## Run
 

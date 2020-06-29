@@ -31,6 +31,17 @@ export default function App() {
     timer.reset(MODES[m].minutes * 60);
   };
 
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.code === "Space" && e.target === document.body) {
+        e.preventDefault();
+        timer.setRunning((r) => !r);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [timer]);
+
   const mm = String(Math.floor(timer.seconds / 60)).padStart(2, "0");
   const ss = String(timer.seconds % 60).padStart(2, "0");
   document.title = `${mm}:${ss} - ${MODES[mode].label}`;
